@@ -14,10 +14,13 @@ The main purpose of this repo is to provide basic Terraform knowledge and concep
 
 ## Index
 
-Main concepts and knowledge is split into smal pieces like this:
+Main concepts and knowledge are split into small pieces like this:
 
 ```txt
-
+1. what-is-terraform-and-iac
+2. data-types
 ```
 
-Read it out and have fun.
+I recommend following the upper order if you are a newbie in Terraform.
+
+Read it and have fun :smile:
