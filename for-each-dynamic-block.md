@@ -22,7 +22,15 @@ resource "aws_subnet" "public_subnets" {
 }
 ```
 
-Breakdown the example, `for_each = var.public_subnets` will tell to terraform that: "I want you to create three subnets correspond to the public_subnets config ('public_subnet_1', 'public_subnet_2' and 'public_subnet_3')" and as a result, we will have `3 subnets`:
+Breakdown of the example:
+
+For **variable definition**, we have a map with three key/value pairs
+
+- public_subnet_1 / 1
+- public_subnet_2 / 2
+- public_subnet_3 / 3
+
+For **resource definition** `for_each = var.public_subnets` will tell to terraform that: "I want you to create three subnets correspond to the public_subnets config ('public_subnet_1', 'public_subnet_2' and 'public_subnet_3')" and as a result, we will have `3 subnets`:
 
 - public_subnet_1
 - public_subnet_2
@@ -83,6 +91,12 @@ resource "aws_security_group" "example" {
 }
 ```
 
+Breakdown of the example:
+
+For **variable definition**, defines a variable `security_groups` which is a map of objects. Each object contains `name` and `description` attributes.
+
+For **resource definition**, use `for_each` to iterate through the `security_groups` map. For each security_group, it dynamically assign the `name` and `description` based on the current `each.value`.
+
 And now is `count`
 
 ```tf
@@ -122,3 +136,9 @@ resource "aws_instance" "example" {
   }
 }
 ```
+
+Breakdown of the example:
+
+For **variable definition**, defines `instances` which is a list of objects. Each object contains `ami`, `instance_type`, `name` attributes.
+
+For **resource definition**, use the `count` parameter set to the length of the `instances` list. For each instance, it dynamically assigns the `ami`, `instance_type`, `name` based on the current `count.index`.
