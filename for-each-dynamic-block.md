@@ -5,6 +5,8 @@ The main reason that makes me want to combine this these two concepts is we can 
 - Repeatable resources
 - Looping
 
+## for-each
+
 For example with `for_each`
 
 ```tf
@@ -142,3 +144,70 @@ Breakdown of the example:
 For **variable definition**, defines `instances` which is a list of objects. Each object contains `ami`, `instance_type`, `name` attributes.
 
 For **resource definition**, use the `count` parameter set to the length of the `instances` list. For each instance, it dynamically assigns the `ami`, `instance_type`, `name` based on the current `count.index`.
+
+## dynamic block
+
+Let's move to dynamic block, we use dynamic block to create "blocks" (sometimes is nested block).
+
+A dynamic block has the following information:
+
+- `content`: iterable content.
+- `for_each`: collection to iterate through.
+- `iterator`: this is optional, we use it to indicate the name of the variable is used in `content` block.
+
+Take an example
+
+```tf
+variable "ingress_rules" {
+  type = list(object({
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+
+  default = [
+    {
+      from_port   = 80
+      to_port     = 80
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
+}
+
+resource "aws_security_group" "example" {
+  name   = "example"
+  vpc_id = aws_vpc.main.id
+
+  dynamic "ingress" {
+    for_each = var.ingress_rules
+
+    content {
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      protocol    = ingress.value.protocol
+      cidr_blocks = ingress.value.cidr_blocks
+    }
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+```
+
+Breakdown of the example:
+
+For **variable definition**, defines the `ingress_rules` which is a list of object that contains `from_port`, `to_port`, `protocol`, `cidr_blocks` attributes.
+
+For **resource definition**, **dynamic** key word will help us create blocks equal in number to the number of elements in the `ingress_rules` list and dynamically assign the `from_port`, `to_port`, `protocol`, `cidr_blocks` based on `ingress.value`.
