@@ -19,7 +19,8 @@ Main concepts and knowledge are split into small pieces like this:
 ```txt
 1. what-is-terraform-and-iac
 2. data-types
-3. for-each-dynamic-block
+3. state
+4. for-each-dynamic-block
 ```
 
 I recommend following the upper order if you are a newbie in Terraform.
