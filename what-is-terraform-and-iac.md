@@ -33,3 +33,5 @@ Without IaC, scaling up infrastructure will require more requirements, such as:
 - Remotely connect to servers
 - Manual provision and configuring server via a bunch of scripts or commands
 - ...
+
+## Problems when managing infrastructure manually
