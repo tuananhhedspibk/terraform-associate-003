@@ -21,6 +21,9 @@ Main concepts and knowledge are split into small pieces like this:
 2. data-types
 3. state
 4. for-each-dynamic-block
+5. dependencies
+6. workspace
+7. alias-provider
 ```
 
 I recommend following the upper order if you are a newbie in Terraform.
