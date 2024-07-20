@@ -35,3 +35,9 @@ Without IaC, scaling up infrastructure will require more requirements, such as:
 - ...
 
 ## Problems when managing infrastructure manually
+
+1. Can not ensure the unified of component configuring.
+2. Can not ensure the unified between environments (dev, stg, prod).
+3. Slow provisioning.
+4. Hard to prevent human missing.
+5. Hard for documenting.
