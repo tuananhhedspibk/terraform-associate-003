@@ -24,6 +24,10 @@ Main concepts and knowledge are split into small pieces like this:
 5. dependencies
 6. workspace
 7. alias-provider
+8. terraform-settings
+9. env-variable
+10. logging
+11. public-registry
 ```
 
 I recommend following the upper order if you are a newbie in Terraform.
