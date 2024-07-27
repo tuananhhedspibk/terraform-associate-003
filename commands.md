@@ -109,18 +109,50 @@ This command reads terraform configuration from current working dir and terrafor
 
 ## terraform force-unlock
 
-## terraform show
+Terraform use locking mechanism to prevent simultaneously modifying state. When running `terraform plan` or `terraform apply` command (with `local` backend), the `.terraform.tfstate.lock.info` file will be created to lock state.
+
+To **unlock** the state we can use the command
+
+```sh
+terraform force-unlock LOCK_ID
+```
+
+Below is the list of locking support backends:
+
+- GCP
+- Azure
+- AWS S3 with DynamoDB
 
 ## terraform validate
 
+Used to check syntax, attribute names, value types of the module config files.
+
 ## terraform refresh
+
+Read all of the settings from remote objects and update local state to match with remote state.
+
+This "refresh" step is always executed when we run `terraform plan`.
+
+`terraform plan -refresh-only`: Update local state only without affecting the remote resources. We use this command when remote resources are modified by hand.
+
+Because `terraform refresh` command has been deprecated so use `terraform plan -refresh-only` instead.
 
 ## terraform import
 
+Used to import existing resources to the terraform state. Allow us to manage the resources that are not created by terraform without re-creating them.
+
+```sh
+terraform import ADDRESS ID
+```
+
 ## terraform output
 
-## terraform get
+Read the value of output variables from terraform state.
 
 ## terraform fmt
 
+Format terraform configure file, ensure the consistancy of the codebase.
+
 ## terraform graph
+
+Output a dependencies graph of config in `DOT` language format.
