@@ -11,7 +11,7 @@ The main aim of registry is to provide plugins to manage any infrastructure API.
 ## Requirement to publish terraform public registry
 
 1. Must have correspond github public repository.
-2. Repositorys name must have format `terraform-<PROVIDER>-<NAME>` - with provider can be aws or google, ... name is just a descriptive name for repository. For example: `terraform-aws-ec2-instance`
+2. Repositorys name must have format `terraform-<PROVIDER>-<NAME>` - with `PROVIDER` can be aws or google, ... `NAME` is just a descriptive name for repository. For example: `terraform-aws-ec2-instance`
 3. Module structure must be
 
 ```text
