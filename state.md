@@ -1,6 +1,6 @@
 # State in terraform
 
-This is a necessaray requirement for terraform to function.
+This is a necessary requirement for terraform to function.
 
 For more details you can see in: <https://developer.hashicorp.com/terraform/language/state/purpose>
 
